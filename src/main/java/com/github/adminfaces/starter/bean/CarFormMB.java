@@ -62,7 +62,7 @@ public class CarFormMB implements Serializable {
 
 
     public void remove() throws IOException {
-        if (!Utils.isUserInRole("admin")) {
+        if (!Utils.isUserInRole("ROLE_ADMIN")) {
             throw new AccessDeniedException("User not authorized! Only role <b>admin</b> can remove cars.");
         }
         if (has(car) && has(car.getId())) {
@@ -70,7 +70,7 @@ public class CarFormMB implements Serializable {
             addDetailMessage("Car " + car.getModel()
                     + " removed successfully");
             Faces.getFlash().setKeepMessages(true);
-            Faces.redirect("car-list.jsf");
+            Faces.redirect("user/car-list.jsf");
         }
     }
 
