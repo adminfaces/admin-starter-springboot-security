@@ -6,9 +6,11 @@ package com.github.adminfaces.starter.bean;
 
 import com.github.adminfaces.starter.model.Car;
 import com.github.adminfaces.starter.service.CarService;
-import javax.faces.view.ViewScoped;
+import com.github.adminfaces.starter.util.Utils;
+import com.github.adminfaces.template.exception.AccessDeniedException;
 import org.omnifaces.util.Faces;
 
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.IOException;
@@ -24,17 +26,16 @@ import static com.github.adminfaces.template.util.Assert.has;
 @ViewScoped
 public class CarFormMB implements Serializable {
 
+    @Inject
+    CarService carService;
 
     private Integer id;
     private Car car;
 
 
-    @Inject
-    CarService carService;
-
     public void init() {
-        if(Faces.isAjaxRequest()){
-           return;
+        if (Faces.isAjaxRequest()) {
+            return;
         }
         if (has(id)) {
             car = carService.findById(id);
@@ -61,6 +62,9 @@ public class CarFormMB implements Serializable {
 
 
     public void remove() throws IOException {
+        if (!Utils.isUserInRole("admin")) {
+            throw new AccessDeniedException("User not authorized! Only role <b>admin</b> can remove cars.");
+        }
         if (has(car) && has(car.getId())) {
             carService.remove(car);
             addDetailMessage("Car " + car.getModel()
