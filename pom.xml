@@ -26,12 +26,17 @@
             <dependency>
                 <groupId>com.github.adminfaces</groupId>
                 <artifactId>admin-template</artifactId>
-                <version>1.0.0-RC20</version>
+                <version>1.0.2</version>
             </dependency>
             <dependency>
                 <groupId>com.github.adminfaces</groupId>
                 <artifactId>admin-theme</artifactId>
-                <version>1.0.0-RC20</version>
+                <version>1.0.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces</groupId>
+                <artifactId>primefaces</artifactId>
+                <version>7.0</version>
             </dependency>
         </dependencies>    
     </dependencyManagement>  
@@ -42,9 +47,9 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>		
         <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-security</artifactId>
+	</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
